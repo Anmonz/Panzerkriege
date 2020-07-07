@@ -10,10 +10,11 @@ using Morpeh.Globals;
 public sealed class InputSystem : UpdateSystem {
     [SerializeField] private GlobalEvent gunFireEvent;
     [SerializeField] private GlobalEventInt keyCodeEvent;
+    [SerializeField] private GlobalEvent startEvent;
 
     private KeyCode _keyCodeDown;
     private ControlsComponent _control;
-    
+
     public override void OnAwake()
     {
         ref var controls = ref World.Filter.With<ControlsComponent>().Select<ControlsComponent>();
@@ -23,10 +24,10 @@ public sealed class InputSystem : UpdateSystem {
 
     public override void OnUpdate(float deltaTime)
     {
-        //if (_control != )
+        if (startEvent.IsPublished)
         {
-            CheckMoveKeysCodes();
-            CheckFireKeyCode(_control.keyMoveFire);
+                CheckMoveKeysCodes();
+                CheckFireKeyCode(_control.keyMoveFire);
         }
     }
 

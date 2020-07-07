@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc810b9bc2ac299409c70601e2208770, type: 3}
-  m_Name: InputSystem
+  m_Script: {fileID: 11500000, guid: 22fef23d9a3adb44a9d4bd3d339e2bc0, type: 3}
+  m_Name: StartTimerSystem
   m_EditorClassIdentifier: 
-  gunFireEvent: {fileID: 11400000, guid: 7ec4e98a88eb0cf479657192812bb895, type: 2}
-  keyCodeEvent: {fileID: 11400000, guid: 18f3186fdfbc02f48b4e89af9c56eb52, type: 2}
   startEvent: {fileID: 11400000, guid: 679c9a70ccc72b748b7bb89db94221e1, type: 2}
+  startTimer: 5

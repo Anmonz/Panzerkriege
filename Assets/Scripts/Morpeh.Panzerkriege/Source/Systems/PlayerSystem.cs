@@ -10,9 +10,11 @@ using Morpeh.Globals;
 public sealed class PlayerSystem : UpdateSystem {
     [SerializeField] private GlobalEventInt keyCodeEvent;
     [SerializeField] private GlobalEvent gunFireEvent;
- 
+    [SerializeField] private GlobalEvent startEvent;
+
     private Filter _filter;
     private ControlsComponent _control;
+    private bool isStarted = false;
 
     public override void OnAwake() {
         _filter = World.Filter.With<PlayerComponent>().With<GunComponent>().With<MovementComponent>().With<TransformComponent>();
@@ -20,9 +22,17 @@ public sealed class PlayerSystem : UpdateSystem {
         _control = controls.GetComponent(0);
     }
 
-    public override void OnUpdate(float deltaTime) {
-        OnFireInput();
-        OnMoveInput();
+    public override void OnUpdate(float deltaTime) 
+    {
+        if (startEvent.IsPublished)
+        {
+            isStarted = true;
+        }
+        if(isStarted)
+        { 
+                OnFireInput();
+                OnMoveInput();
+        }
     }
 
     private void OnFireInput()

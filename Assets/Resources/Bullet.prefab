@@ -199,4 +199,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serializedData:
     collider2D: {fileID: 2885282109893588656}
-    collisionDistance: 0.5
+    collisionDistance: 0
