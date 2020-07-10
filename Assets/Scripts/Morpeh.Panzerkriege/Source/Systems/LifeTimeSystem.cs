@@ -20,7 +20,7 @@ public sealed class LifeTimeSystem : UpdateSystem {
     /// </summary>
     public override void OnAwake()
     {
-        _filter = World.Filter.With<LifeTimeComponent>().With<DestroyComponent>();
+        _filter = World.Filter.With<LifeTimeComponent>().With<HealthComponent>();
     }
 
     /// <summary>
@@ -30,14 +30,14 @@ public sealed class LifeTimeSystem : UpdateSystem {
     public override void OnUpdate(float deltaTime)
     {
         var components = this._filter.Select<LifeTimeComponent>();
-        var destroys = this._filter.Select<DestroyComponent>();
+        var destroys = this._filter.Select<HealthComponent>();
 
         for (int i = 0, length = this._filter.Length; i < length; i++)
         {
             //Проверка времени жизни объекта при его уменьшениии
             if ((components.GetComponent(i).lifeTime -= deltaTime) < 0)
             {
-                destroys.GetComponent(i).IsDestroy = true;//Установка метки уничтожения
+                destroys.GetComponent(i).healthPoints = 0;//Удаление жизней
             }
         }
     }

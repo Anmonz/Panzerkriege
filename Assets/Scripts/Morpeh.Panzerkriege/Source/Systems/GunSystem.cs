@@ -66,9 +66,7 @@ public sealed class GunSystem : UpdateSystem {
     public void Fire(ref GunComponent gun)
     {
         //Создание пули через префаб в позиции орудия и получение ссылки на компонент пули
-        ref var bullet = ref Instantiate(gun.bulletPrefab, gun.gunPosition.position, gun.gunPosition.rotation).GetComponent<BulletProvider>().GetData();
-        //Установка направления пули
-        bullet.Direction = gun.gunPosition.up;
+        ref var bullet = ref WebManager.Instance.Instantiate(gun.bulletPrefab, gun.gunPosition).GetComponent<BulletProvider>().GetData();
         //Проигрывает звук выстрела
         gun.gunShootEvent.Invoke();
         //Задает метку и время начала перезарядки

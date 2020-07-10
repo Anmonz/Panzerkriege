@@ -7,7 +7,8 @@ using UnityEngine.Events;
 [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 [Il2CppSetOption(Option.DivideByZeroChecks, false)]
 [System.Serializable]
-public struct MovementComponent : IComponent {
+public struct MovementComponent : IComponent
+{
     public float speed;
     public UnityEvent moveStartEvent;
     public UnityEvent moveEndEvent;

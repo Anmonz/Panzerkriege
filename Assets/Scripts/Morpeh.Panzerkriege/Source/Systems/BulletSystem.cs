@@ -45,7 +45,8 @@ public sealed class BulletSystem : UpdateSystem {
         {
             ref var bullet = ref bullets.GetComponent(i);
             ref var transform = ref transforms.GetComponent(i);
-            
+
+            if (bullet.Direction == Vector3.zero) bullet.Direction = transform.transform.up;
             //Установка новой позиции пули
             transform.transform.position += bullet.Direction * bullet.bulletSpeed * deltaTime;
         }

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2814138989300024253}
   - component: {fileID: 7518465039884306557}
   - component: {fileID: 5701317323223798867}
+  - component: {fileID: 5135835100394240748}
   m_Layer: 0
   m_Name: Brick_5
   m_TagString: Untagged
@@ -195,6 +196,29 @@ MonoBehaviour:
   serializedData:
     collider2D: {fileID: 7518465039884306557}
     collisionDistance: 0
+--- !u!114 &5135835100394240748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639866022395938524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 6324375670279703414}
+  - {fileID: 8660896894438072910}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1295887220161809693
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,6 +235,7 @@ GameObject:
   - component: {fileID: 337344283904848636}
   - component: {fileID: 337344283904848637}
   - component: {fileID: 337344283904848639}
+  - component: {fileID: 9068109616056548594}
   m_Layer: 0
   m_Name: Brick_1
   m_TagString: Untagged
@@ -390,6 +415,29 @@ MonoBehaviour:
   serializedData:
     collider2D: {fileID: 337344283904848637}
     collisionDistance: 0
+--- !u!114 &9068109616056548594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295887220161809693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 9204657680553670051}
+  - {fileID: 9204657680553670050}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1303897137546844794
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,6 +454,7 @@ GameObject:
   - component: {fileID: 3955437680704007873}
   - component: {fileID: 6411963624929679508}
   - component: {fileID: 8255675898087234888}
+  - component: {fileID: 5013238761537556411}
   m_Layer: 0
   m_Name: Brick_7
   m_TagString: Untagged
@@ -585,6 +634,29 @@ MonoBehaviour:
   serializedData:
     collider2D: {fileID: 6411963624929679508}
     collisionDistance: 0
+--- !u!114 &5013238761537556411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303897137546844794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 8531936630582415958}
+  - {fileID: 88640842513755212}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1926861581371789744
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,7 +666,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4403163945114806843}
-  - component: {fileID: -2579709679205712753}
   m_Layer: 0
   m_Name: BrickDOT
   m_TagString: Untagged
@@ -624,28 +695,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-2579709679205712753
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1926861581371789744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 0}
-  viewIdField: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!1 &1980663376625371280
 GameObject:
   m_ObjectHideFlags: 0
@@ -662,6 +711,7 @@ GameObject:
   - component: {fileID: 337344284363830251}
   - component: {fileID: 337344284363830248}
   - component: {fileID: 337344284363830250}
+  - component: {fileID: 7214191374744351665}
   m_Layer: 0
   m_Name: Brick_4
   m_TagString: Untagged
@@ -841,6 +891,29 @@ MonoBehaviour:
   serializedData:
     collider2D: {fileID: 337344284363830248}
     collisionDistance: 0
+--- !u!114 &7214191374744351665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980663376625371280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 9204657681046140095}
+  - {fileID: 9204657681046140092}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &2320483180601021378
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,6 +930,7 @@ GameObject:
   - component: {fileID: 1205814339227718004}
   - component: {fileID: 5821310078013482885}
   - component: {fileID: 1179714682156426510}
+  - component: {fileID: 5963770103889511180}
   m_Layer: 0
   m_Name: Brick_8
   m_TagString: Untagged
@@ -1036,6 +1110,29 @@ MonoBehaviour:
   serializedData:
     collider2D: {fileID: 5821310078013482885}
     collisionDistance: 0
+--- !u!114 &5963770103889511180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2320483180601021378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 723920150438505789}
+  - {fileID: 7029658221239303797}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &6009495709440387397
 GameObject:
   m_ObjectHideFlags: 0
@@ -1052,6 +1149,7 @@ GameObject:
   - component: {fileID: 337344284755567188}
   - component: {fileID: 337344284755567189}
   - component: {fileID: 337344284755567191}
+  - component: {fileID: 3612718891207742068}
   m_Layer: 0
   m_Name: Brick_3
   m_TagString: Untagged
@@ -1231,6 +1329,29 @@ MonoBehaviour:
   serializedData:
     collider2D: {fileID: 337344284755567189}
     collisionDistance: 0
+--- !u!114 &3612718891207742068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6009495709440387397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 9204657680320161050}
+  - {fileID: 9204657680320161051}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &6170185582612865393
 GameObject:
   m_ObjectHideFlags: 0
@@ -1247,6 +1368,7 @@ GameObject:
   - component: {fileID: 8179193070326037335}
   - component: {fileID: 1083637318714644182}
   - component: {fileID: 292930461188191589}
+  - component: {fileID: 7660947263934937140}
   m_Layer: 0
   m_Name: Brick_6
   m_TagString: Untagged
@@ -1426,6 +1548,29 @@ MonoBehaviour:
   serializedData:
     collider2D: {fileID: 1083637318714644182}
     collisionDistance: 0
+--- !u!114 &7660947263934937140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6170185582612865393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 631098629712716756}
+  - {fileID: 1129192216308973194}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &6434430340242011239
 GameObject:
   m_ObjectHideFlags: 0
@@ -1442,6 +1587,7 @@ GameObject:
   - component: {fileID: 337344283635421278}
   - component: {fileID: 337344283635421279}
   - component: {fileID: 337344283635421273}
+  - component: {fileID: 4832849105077272988}
   m_Layer: 0
   m_Name: Brick_2
   m_TagString: Untagged
@@ -1621,3 +1767,26 @@ MonoBehaviour:
   serializedData:
     collider2D: {fileID: 337344283635421279}
     collisionDistance: 0
+--- !u!114 &4832849105077272988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6434430340242011239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 9204657679208404736}
+  - {fileID: 9204657679208404737}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0

@@ -12,7 +12,6 @@ using System.Collections.Generic;
 [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(SpawnSystem))]
 public sealed class SpawnSystem : UpdateSystem
 {
-
     [SerializeField] private List<GameObject> _players; //Список префабов игроков
     [SerializeField] private float _timeRespawnPlayers; //Время возрождения игроков
 
@@ -54,7 +53,7 @@ public sealed class SpawnSystem : UpdateSystem
             for (int j = 0; j < 2; j++)
             {
                 //Проверка на смерть
-                if (playersDead[j])
+                if (playersDead[j] && (j+1) == WebManager.Instance.NumberPlayer)
                 {
                     //Провека на время начала смерти (При отрицательном времени игрок был жив)
                     if (_startTimeRespawn[j] == -1f)

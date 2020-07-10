@@ -7,24 +7,14 @@ using UnityEngine;
 /// </summary>
 public class SpawnObjects : MonoBehaviour
 {
-    [SerializeField] private GameObject smallExplosionFX; //Префаб маленького взрыва
-    [SerializeField] private GameObject bigExplosionFX; //Префаб большого взрыва
+    [SerializeField] private GameObject spawnObject; //Создающийся объект
 
     /// <summary>
-    /// Создает объект маленького взырыва в позиции трансформа
+    /// Создает объект в позиции трансформа
     /// </summary>
     /// <param name="transform"></param>
-    public void SpawnSmallExplosion(Transform transform)
+    public void SpawnSObject(Transform transform)
     {
-        Instantiate(smallExplosionFX, transform.position, transform.rotation);
-    }
-
-    /// <summary>
-    /// Создает объект большого взырыва в позиции трансформа
-    /// </summary>
-    /// <param name="transform"></param>
-    public void SpawnBigExplosion(Transform transform)
-    {
-        Instantiate(bigExplosionFX, transform.position, transform.rotation);
+        Instantiate(spawnObject, transform.position, transform.rotation);
     }
 }

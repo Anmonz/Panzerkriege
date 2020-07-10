@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: -697807027923651178}
   - component: {fileID: -6445718723493282319}
   - component: {fileID: -3060962562469823839}
+  - component: {fileID: 563324762759002192}
+  - component: {fileID: -4747706046402612372}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -108,7 +110,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: -3060962562469823839}
-          m_MethodName: SpawnSmallExplosion
+          m_MethodName: SpawnSObject
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 7665976701371389292}
@@ -131,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializedData:
-    lifeTime: 3
+    lifeTime: 3000
 --- !u!114 &1274169909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,10 +230,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51de4ea30c62d6146a42ef58d2ac5b0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smallExplosionFX: {fileID: 8491172231787359155, guid: 3f93734fdac3d0d478eec32cb826abb4,
+  spawnObject: {fileID: 8491172231787359155, guid: 3f93734fdac3d0d478eec32cb826abb4,
     type: 3}
-  bigExplosionFX: {fileID: 8489625512447626768, guid: 83107bee23223074ab114d9cb09ed023,
-    type: 3}
+--- !u!114 &563324762759002192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337759628038452854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 0
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: -4747706046402612372}
+  - {fileID: 1274169909}
+  - {fileID: -3041425865984418833}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &-4747706046402612372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337759628038452854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 175339876817a5b4dbd83de3e45a094d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializedData:
+    healthPoints: 1
 --- !u!1 &3191767527436912105
 GameObject:
   m_ObjectHideFlags: 0
