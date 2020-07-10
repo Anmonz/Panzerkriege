@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _players:
   - {fileID: 3396157535587410493, guid: d5d463f3bbe83974698588a382931026, type: 3}
-  - {fileID: 8740224936085741596, guid: fddd7e82a52a4f6458ead3db31f982eb, type: 3}
+  - {fileID: 3396157535587410493, guid: 725136476596e8c4f8347ef8cd77672c, type: 3}
   _timeRespawnPlayers: 3

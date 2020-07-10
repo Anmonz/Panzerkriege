@@ -1,6 +1,7 @@
 ﻿using Morpeh;
 using UnityEngine;
 using Unity.IL2CPP.CompilerServices;
+using UnityEngine.Events;
 
 [Il2CppSetOption(Option.NullChecks, false)]
 [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
@@ -9,6 +10,7 @@ using Unity.IL2CPP.CompilerServices;
 public struct BulletComponent : IComponent {
     public float bulletSpeed;
     public int damgeBullet;
+    public UnityEvent bulletExplosionEvent;
 
     private Vector3 _direction;
 

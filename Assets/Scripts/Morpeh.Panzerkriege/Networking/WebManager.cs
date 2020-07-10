@@ -51,6 +51,11 @@ public class WebManager : MonoBehaviourPunCallbacks
         PhotonNetwork.LeaveRoom();
     }
 
+    public GameObject Instantiate(GameObject objectGame, Transform transform)
+    {
+        return PhotonNetwork.Instantiate(objectGame.name, transform.position, transform.rotation, 0);
+    }
+
     public int NumberPlayer
     {
         get

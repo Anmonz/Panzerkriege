@@ -12,4 +12,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd437f1692b6b640a3e9d52f087c194, type: 3}
   m_Name: DestroySystem
   m_EditorClassIdentifier: 
-  destroyEvent: {fileID: 11400000, guid: 5dc84ce7e65fc994f80b594448e1fa1b, type: 2}

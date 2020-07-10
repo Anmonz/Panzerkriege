@@ -12,4 +12,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 837cf37e902fb9a449aaaa35851150df, type: 3}
   m_Name: BulletCollisionSystem
   m_EditorClassIdentifier: 
-  destroyEvent: {fileID: 11400000, guid: 5dc84ce7e65fc994f80b594448e1fa1b, type: 2}

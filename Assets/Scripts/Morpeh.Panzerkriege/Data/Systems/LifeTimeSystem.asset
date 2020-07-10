@@ -12,4 +12,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085ae789115fa2841b1c131ae969efc7, type: 3}
   m_Name: LifeTimeSystem
   m_EditorClassIdentifier: 
-  destroyEvent: {fileID: 11400000, guid: 5dc84ce7e65fc994f80b594448e1fa1b, type: 2}

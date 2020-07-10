@@ -61,13 +61,26 @@ public class WebLauncher : MonoBehaviourPunCallbacks
     {
         Debug.Log("PUN Basics: OnJoinedRoom() called by PUN. Now this client is in a room.");
 
-        if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
+        //if (PhotonNetwork.CurrentRoom.PlayerCount == 2 )
+        //{
+        //    Debug.Log("We load the Game");
+
+
+        //    // #Critical
+        //    // Load the Room Level.
+        //    PhotonNetwork.LoadLevel(1);
+        //}
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        Debug.LogFormat("OnPlayerEnteredRoom() {0}", newPlayer.NickName); // not seen if you're the player connecting
+
+        if (PhotonNetwork.IsMasterClient)
         {
-            Debug.Log("We load the Game");
+            Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient); // called before OnPlayerLeftRoom
 
 
-            // #Critical
-            // Load the Room Level.
             PhotonNetwork.LoadLevel(1);
         }
     }

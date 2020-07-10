@@ -12,4 +12,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 626bb5e188613f142a29f7d19f9eea09, type: 3}
   m_Name: HealthSystem
   m_EditorClassIdentifier: 
-  destroyEvent: {fileID: 11400000, guid: 5dc84ce7e65fc994f80b594448e1fa1b, type: 2}

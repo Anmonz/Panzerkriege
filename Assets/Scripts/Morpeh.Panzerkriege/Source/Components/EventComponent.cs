@@ -9,10 +9,10 @@ using UnityEngine.Events;
 [Il2CppSetOption(Option.DivideByZeroChecks, false)]
 [System.Serializable]
 public struct EventComponent : IComponent {
-    [SerializeField] private GlobalEvent _currentGlobalEvent;
+    [SerializeField] private GlobalEventInt _currentGlobalEvent;
     [SerializeField] private UnityEvent _inspectorUnityEvent;
 
-    public GlobalEvent CurentGloabalEvent
+    public GlobalEventInt CurentGloabalEvent
     {
         get => _currentGlobalEvent;
     }

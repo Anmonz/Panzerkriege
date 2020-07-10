@@ -2,6 +2,7 @@
 using UnityEngine;
 using Unity.IL2CPP.CompilerServices;
 using Morpeh.Globals;
+using System;
 
 /// <summary>
 /// Система Уничтоения объектов при окончании установленного времени жизни
@@ -12,7 +13,6 @@ using Morpeh.Globals;
 [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(LifeTimeSystem))]
 public sealed class LifeTimeSystem : UpdateSystem {
 
-    [SerializeField] private GlobalEvent destroyEvent; //Событие уничтожения объекта
     private Filter _filter;//Филььтр компонентов LifeTimeComponent DestroyComponent
 
     /// <summary>
@@ -38,7 +38,6 @@ public sealed class LifeTimeSystem : UpdateSystem {
             if ((components.GetComponent(i).lifeTime -= deltaTime) < 0)
             {
                 destroys.GetComponent(i).IsDestroy = true;//Установка метки уничтожения
-                destroyEvent.Publish();//Активация события уничтожения
             }
         }
     }

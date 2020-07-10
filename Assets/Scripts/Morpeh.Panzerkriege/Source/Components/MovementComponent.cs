@@ -1,6 +1,7 @@
 ﻿using Morpeh;
 using UnityEngine;
 using Unity.IL2CPP.CompilerServices;
+using UnityEngine.Events;
 
 [Il2CppSetOption(Option.NullChecks, false)]
 [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
@@ -8,6 +9,9 @@ using Unity.IL2CPP.CompilerServices;
 [System.Serializable]
 public struct MovementComponent : IComponent {
     public float speed;
+    public UnityEvent moveStartEvent;
+    public UnityEvent moveEndEvent;
+    public UnityEvent moveHitEvent;
 
     private Vector3 _vectorMove;
 

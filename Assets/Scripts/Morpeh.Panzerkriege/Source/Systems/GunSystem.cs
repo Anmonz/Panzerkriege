@@ -69,6 +69,8 @@ public sealed class GunSystem : UpdateSystem {
         ref var bullet = ref Instantiate(gun.bulletPrefab, gun.gunPosition.position, gun.gunPosition.rotation).GetComponent<BulletProvider>().GetData();
         //Установка направления пули
         bullet.Direction = gun.gunPosition.up;
+        //Проигрывает звук выстрела
+        gun.gunShootEvent.Invoke();
         //Задает метку и время начала перезарядки
         gun.IsReloadGun = true;
         gun.StartTimeReload = Time.time;

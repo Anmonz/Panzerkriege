@@ -11,6 +11,7 @@ public struct GunComponent : IComponent {
     public Transform gunPosition;
     public float timeReload;
     public GameObject bulletPrefab;
+    public UnityEvent gunShootEvent;
     
     
     private bool _isReloadGun;

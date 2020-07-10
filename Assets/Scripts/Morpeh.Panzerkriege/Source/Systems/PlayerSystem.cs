@@ -74,10 +74,10 @@ public sealed class PlayerSystem : UpdateSystem {
                 //ПРоверка сетевого игрока
                 if (player.NumberPlayer == WebManager.Instance.NumberPlayer)
                 {
-                    //Установка метки стрельбы на оружие
                     ref var gun = ref guns.GetComponent(i);
                     //Провекра на перезарядку орудия
-                    if (!gun.IsReloadGun) gun.IsShoot = true;
+                    if (!gun.IsReloadGun) 
+                        gun.IsShoot = true;//Установка метки стрельбы на оружие
                 }
             }
         }

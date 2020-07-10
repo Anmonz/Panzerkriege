@@ -34,14 +34,20 @@ public sealed class MoveCollisionSystem : UpdateSystem {
         for (int i = 0, length = this._filter.Length; i < length; i++)
         {
             ref var mover = ref movers.GetComponent(i);
-            ref var component = ref components.GetComponent(i);
-
-            RaycastHit2D[] hits = new RaycastHit2D[10];
-
-            //Проверяет столкновение коллайдера по вектору движения через установленную дистанцию
-            if (component.collider2D.Cast(mover.VectorMove, hits, component.collisionDistance) > 0)
+            
+            //Проверка на перемещение
+            if (mover.VectorMove != Vector3.zero)
             {
-                mover.VectorMove = Vector3.zero;//Остонавливает вектор движения
+                ref var component = ref components.GetComponent(i);
+
+                RaycastHit2D[] hits = new RaycastHit2D[10];
+
+                //Проверяет столкновение коллайдера по вектору движения через установленную дистанцию
+                if (component.collider2D.Cast(mover.VectorMove, hits, component.collisionDistance) > 0)
+                {
+                    mover.moveHitEvent.Invoke();
+                    mover.VectorMove = Vector3.zero;//Остонавливает вектор движения
+                }
             }
         }
     }

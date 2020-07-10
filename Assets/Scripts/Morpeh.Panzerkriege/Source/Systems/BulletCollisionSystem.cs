@@ -2,6 +2,7 @@
 using UnityEngine;
 using Unity.IL2CPP.CompilerServices;
 using Morpeh.Globals;
+using System;
 
 /// <summary>
 /// Система проверки столкновения пуль
@@ -12,7 +13,6 @@ using Morpeh.Globals;
 [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(BulletCollisionSystem))]
 public sealed class BulletCollisionSystem : UpdateSystem {
 
-    [SerializeField] private GlobalEvent destroyEvent;//Событие уничтожения объекта
 
     private Filter _filterBullets; //фильтр пуль
 
@@ -58,9 +58,10 @@ public sealed class BulletCollisionSystem : UpdateSystem {
                     }
                 }
 
+                //проигрывание звука взрыва
+                bullet.bulletExplosionEvent.Invoke();
                 //Уничтожение пули
                 destroy.IsDestroy = true;
-                destroyEvent.Publish();
             }
         }
     }

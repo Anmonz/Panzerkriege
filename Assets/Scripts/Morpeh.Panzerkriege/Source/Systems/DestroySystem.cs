@@ -12,8 +12,6 @@ using Morpeh.Globals;
 [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(DestroySystem))]
 public sealed class DestroySystem : UpdateSystem {
 
-    [SerializeField] private GlobalEvent destroyEvent;//Событие уничтожения объекта
-
     private Filter _filter;//Фильтр
 
     /// <summary>
@@ -32,26 +30,20 @@ public sealed class DestroySystem : UpdateSystem {
     /// <param name="deltaTime"></param>
     public override void OnUpdate(float deltaTime)
     {
-        //Проверка на вызов события уничтожения
-        if (destroyEvent.IsPublished)
+        var destroys = this._filter.Select<DestroyComponent>();
+
+        for (int i = 0, length = this._filter.Length; i < length; i++)
         {
-            var destroys = this._filter.Select<DestroyComponent>();
+            ref var destroyObj = ref destroys.GetComponent(i);
 
-            for (int i = 0, length = this._filter.Length; i < length; i++)
+            //Проверка на метку уичтожения объекта
+            if (destroyObj.IsDestroy)
             {
-                ref var destroyObj = ref destroys.GetComponent(i);
-
-                //Проверка на метку уичтожения объекта
-                if (destroyObj.IsDestroy)
-                {
-                    //Вызов события уничтожения на компоненте
-                    destroyObj.destroyEvent.Invoke();
-                    //Уничтожение игрового объекта
-                    Destroy(destroyObj.destroyObject);
-                }
+                //Вызов события уничтожения на компоненте
+                destroyObj.destroyEvent.Invoke();
+                //Уничтожение игрового объекта
+                Destroy(destroyObj.destroyObject);
             }
-
-            destroyEvent.Dispose();
         }
     }
 }

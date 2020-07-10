@@ -15,6 +15,8 @@ public sealed class MovementSystem : UpdateSystem {
 
     private Filter _filterMover;//Фильтр объектов передвижения
 
+    private bool _isMove = false;
+
     /// <summary>
     /// Устанавливает фильтр объектов передвижения
     /// </summary>
@@ -37,17 +39,27 @@ public sealed class MovementSystem : UpdateSystem {
     /// </summary>
     private void MoveTransform()
     {
-        var movers = this._filterMover.Select<TransformComponent>();
-        var speeds = this._filterMover.Select<MovementComponent>();
+        var moveTransforms = this._filterMover.Select<TransformComponent>();
+        var movers = this._filterMover.Select<MovementComponent>();
 
         for (int i = 0, length = this._filterMover.Length; i < length; i++)
         {
-            ref var speed = ref speeds.GetComponent(i);
+            ref var mover = ref movers.GetComponent(i);
             //Проверка вектора передвижения
-            if (speed.VectorMove != Vector3.zero)
+            if (mover.VectorMove != Vector3.zero)
             {
+                if (!_isMove)
+                {
+                    mover.moveStartEvent.Invoke();
+                    _isMove = true;
+                }
                 //Передвижения объекта по верктору с заданной скоростью
-                movers.GetComponent(i).transform.position += speed.VectorMove * speed.speed;
+                moveTransforms.GetComponent(i).transform.position += mover.VectorMove * mover.speed;
+            }
+            else if(_isMove)
+            {
+                mover.moveEndEvent.Invoke();
+                _isMove = false;
             }
         }
     }

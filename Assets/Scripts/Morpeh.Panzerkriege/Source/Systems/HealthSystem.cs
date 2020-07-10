@@ -2,6 +2,7 @@
 using UnityEngine;
 using Unity.IL2CPP.CompilerServices;
 using Morpeh.Globals;
+using System;
 
 /// <summary>
 /// Система проверки окончания жизней в HealthComponent
@@ -12,7 +13,6 @@ using Morpeh.Globals;
 [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(HealthSystem))]
 public sealed class HealthSystem : UpdateSystem {
 
-    [SerializeField] private GlobalEvent destroyEvent;//Событие уничтожения объекта
 
     private Filter _filterHealth;//Фильтр HealthComponent DestroyComponent
     private Filter _filterImmortalHealth; // фильтр безсмертных
@@ -62,7 +62,6 @@ public sealed class HealthSystem : UpdateSystem {
             {
                 //Установка уничтожения оюъекта
                 destroys.GetComponent(i).IsDestroy = true;
-                destroyEvent.Publish();
             }
         }
     }
