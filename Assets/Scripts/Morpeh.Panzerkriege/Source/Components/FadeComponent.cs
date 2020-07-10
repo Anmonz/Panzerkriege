@@ -2,6 +2,7 @@
 using UnityEngine;
 using Unity.IL2CPP.CompilerServices;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 [Il2CppSetOption(Option.NullChecks, false)]
 [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
@@ -12,8 +13,14 @@ public struct FadeComponent : IComponent {
     [SerializeField] private float _timeFade;
     [SerializeField] private bool _isDarken;
     [SerializeField] private bool _isStartFade;
+    [SerializeField] private UnityEvent _endFadeEvent;
 
     private float _timeStartFade;
+
+    public UnityEvent EndFadeEvent
+    {
+        get => _endFadeEvent;
+    }
 
     public Image FadeImage
     {

@@ -3,19 +3,30 @@ using UnityEngine;
 using Unity.IL2CPP.CompilerServices;
 using Morpeh.Globals;
 
+/// <summary>
+/// Система Уничтоения объектов при окончании установленного времени жизни
+/// </summary>
 [Il2CppSetOption(Option.NullChecks, false)]
 [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 [Il2CppSetOption(Option.DivideByZeroChecks, false)]
 [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(LifeTimeSystem))]
 public sealed class LifeTimeSystem : UpdateSystem {
-    [SerializeField] private GlobalEvent destroyEvent;
-    private Filter _filter;
 
+    [SerializeField] private GlobalEvent destroyEvent; //Событие уничтожения объекта
+    private Filter _filter;//Филььтр компонентов LifeTimeComponent DestroyComponent
+
+    /// <summary>
+    /// Устанавливает фильтр
+    /// </summary>
     public override void OnAwake()
     {
         _filter = World.Filter.With<LifeTimeComponent>().With<DestroyComponent>();
     }
 
+    /// <summary>
+    /// Проверяет окончание времени жизни и задает метку уничтожения объекта
+    /// </summary>
+    /// <param name="deltaTime"></param>
     public override void OnUpdate(float deltaTime)
     {
         var components = this._filter.Select<LifeTimeComponent>();
@@ -23,10 +34,11 @@ public sealed class LifeTimeSystem : UpdateSystem {
 
         for (int i = 0, length = this._filter.Length; i < length; i++)
         {
+            //Проверка времени жизни объекта при его уменьшениии
             if ((components.GetComponent(i).lifeTime -= deltaTime) < 0)
             {
-                destroys.GetComponent(i).IsDestroy = true;
-                destroyEvent.Publish();
+                destroys.GetComponent(i).IsDestroy = true;//Установка метки уничтожения
+                destroyEvent.Publish();//Активация события уничтожения
             }
         }
     }

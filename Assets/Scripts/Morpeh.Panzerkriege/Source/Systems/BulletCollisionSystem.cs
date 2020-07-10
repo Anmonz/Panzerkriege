@@ -3,28 +3,38 @@ using UnityEngine;
 using Unity.IL2CPP.CompilerServices;
 using Morpeh.Globals;
 
+/// <summary>
+/// Система проверки столкновения пуль
+/// </summary>
 [Il2CppSetOption(Option.NullChecks, false)]
 [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 [Il2CppSetOption(Option.DivideByZeroChecks, false)]
 [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(BulletCollisionSystem))]
 public sealed class BulletCollisionSystem : UpdateSystem {
-    [SerializeField] private GlobalEvent destroyEvent;
-    private Filter _filter;
-    private Filter _filterColliders;
 
+    [SerializeField] private GlobalEvent destroyEvent;//Событие уничтожения объекта
+
+    private Filter _filterBullets; //фильтр пуль
+
+    /// <summary>
+    /// Устанавливает фильтры
+    /// </summary>
     public override void OnAwake()
     {
-        _filter = World.Filter.With<CollisionComponent>().With<BulletComponent>().With<DestroyComponent>();
-        _filterColliders = World.Filter.With<CollisionComponent>().With<HealthComponent>();
+        _filterBullets = World.Filter.With<CollisionComponent>().With<BulletComponent>().With<DestroyComponent>();
     }
 
+    /// <summary>
+    /// Проверяет столкновение пуль
+    /// </summary>
+    /// <param name="deltaTime"></param>
     public override void OnUpdate(float deltaTime)
     {
-        var components = this._filter.Select<CollisionComponent>();
-        var bullets = this._filter.Select<BulletComponent>();
-        var destroys = this._filter.Select<DestroyComponent>();
+        var components = this._filterBullets.Select<CollisionComponent>();
+        var bullets = this._filterBullets.Select<BulletComponent>();
+        var destroys = this._filterBullets.Select<DestroyComponent>();
 
-        for (int i = 0, length = this._filter.Length; i < length; i++)
+        for (int i = 0, length = this._filterBullets.Length; i < length; i++)
         {
             ref var destroy = ref destroys.GetComponent(i);
             ref var bullet = ref bullets.GetComponent(i);
@@ -32,28 +42,25 @@ public sealed class BulletCollisionSystem : UpdateSystem {
 
             RaycastHit2D[] hits = new RaycastHit2D[10];
 
+            //Проверка столкновения коллайдера пули с другими коллайдерами
             if (component.collider2D.Cast(bullet.Direction, hits, component.collisionDistance) > 0)
             {
-                DestroyObject(hits[0].collider, bullet);
+                //Проверка коллайдера
+                if (hits[0].collider != null)
+                {
+                    //Проверка на HealthProvider
+                    var healthPVDR = hits[0].collider.gameObject.GetComponent<HealthProvider>();
+                    if (healthPVDR != null)
+                    {
+                        //добавления урона к первому столкнувшемуся объекту
+                        ref var healthCPNT = ref healthPVDR.GetData();
+                        healthCPNT.Damages.Push(bullet.damgeBullet);
+                    }
+                }
+
+                //Уничтожение пули
                 destroy.IsDestroy = true;
                 destroyEvent.Publish();
-            }
-        }
-    }
-
-    public void DestroyObject(Collider2D colliderCheck, BulletComponent bullet)
-    {
-        var colliders = this._filterColliders.Select<CollisionComponent>();
-        var healths = this._filterColliders.Select<HealthComponent>();
-
-        for (int i = 0, length = this._filterColliders.Length; i < length; i++)
-        {
-            ref var health = ref healths.GetComponent(i);
-            ref var collider = ref colliders.GetComponent(i);
-
-            if (collider.collider2D == colliderCheck)
-            {
-                health.healthPoints -= bullet.damgeBullet;
             }
         }
     }

@@ -9,14 +9,61 @@ using Photon.Pun.Demo.PunBasics;
 
 public class WebManager : MonoBehaviourPunCallbacks
 {
+    private static WebManager instance;
+
+    public static WebManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<WebManager>();
+                if (instance == null)
+                {
+                    GameObject obj = new GameObject();
+                    obj.name = typeof(WebManager).Name;
+                    instance = obj.AddComponent<WebManager>();
+                }
+            }
+            return instance;
+        }
+    }
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this as WebManager;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public override void OnLeftRoom()
     {
-        SceneManager.LoadScene(0);
+        PhotonNetwork.LoadLevel(0);
     }
 
     public void LeaveRoom()
     {
         PhotonNetwork.LeaveRoom();
+    }
+
+    public int NumberPlayer
+    {
+        get
+        {
+            if(PhotonNetwork.IsMasterClient)
+            {
+                return 1;
+            }
+            else
+            {
+                return 2;
+            }
+        }
     }
 
     public override void OnDisconnected(DisconnectCause cause)
@@ -25,30 +72,7 @@ public class WebManager : MonoBehaviourPunCallbacks
 
         // #Critical: The first we try to do is to join a potential existing room. If there is, good, else, we'll be called back with OnJoinRandomFailed()
 
-        SceneManager.LoadScene(0);
-    }
-
-    void LoadArena()
-    {
-        if (!PhotonNetwork.IsMasterClient)
-        {
-            Debug.LogError("PhotonNetwork : Trying to Load a level but we are not the master Client");
-        }
-
         PhotonNetwork.LoadLevel(0);
-    }
-
-    public override void OnPlayerEnteredRoom(Player other)
-    {
-        Debug.LogFormat("OnPlayerEnteredRoom() {0}", other.NickName); // not seen if you're the player connecting
-
-
-        if (PhotonNetwork.IsMasterClient)
-        {
-            Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient); // called before OnPlayerLeftRoom
-
-            LoadArena();
-        }
     }
 
     public override void OnPlayerLeftRoom(Player other)
@@ -60,11 +84,7 @@ public class WebManager : MonoBehaviourPunCallbacks
         {
             Debug.LogFormat("OnPlayerLeftRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient); // called before OnPlayerLeftRoom
 
-
-            LoadArena();
+            PhotonNetwork.LoadLevel(0);
         }
     }
-
-    //Launcher
-
 }

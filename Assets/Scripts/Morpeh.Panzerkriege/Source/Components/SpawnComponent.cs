@@ -1,13 +1,17 @@
 ﻿using Morpeh;
+using UnityEngine;
 using Unity.IL2CPP.CompilerServices;
 
 [Il2CppSetOption(Option.NullChecks, false)]
 [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 [Il2CppSetOption(Option.DivideByZeroChecks, false)]
-public sealed class DestroyProvider : MonoProvider<DestroyComponent> {
+[System.Serializable]
+public struct SpawnComponent : IComponent {
+    [SerializeField] private int _numberPlayer;
 
-    public void Start()
+
+    public int NumberPlayer
     {
-        if(this.GetData().destroyObject == null) this.GetData().destroyObject = gameObject;
+        get => _numberPlayer;
     }
 }

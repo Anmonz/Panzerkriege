@@ -8,4 +8,10 @@ using System;
 [Il2CppSetOption(Option.DivideByZeroChecks, false)]
 [System.Serializable]
 public struct PlayerComponent : IComponent {
+    [SerializeField] private int _numberPlayer;
+    
+    public int NumberPlayer
+    {
+        get => _numberPlayer;
+    }
 }

@@ -3,74 +3,124 @@ using UnityEngine;
 using Unity.IL2CPP.CompilerServices;
 using Morpeh.Globals;
 
+/// <summary>
+/// Определяет управление игроком
+/// </summary>
 [Il2CppSetOption(Option.NullChecks, false)]
 [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 [Il2CppSetOption(Option.DivideByZeroChecks, false)]
 [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(PlayerSystem))]
 public sealed class PlayerSystem : UpdateSystem {
-    [SerializeField] private GlobalEventInt keyCodeEvent;
-    [SerializeField] private GlobalEvent gunFireEvent;
-    [SerializeField] private GlobalEvent startEvent;
 
-    private Filter _filter;
-    private ControlsComponent _control;
-    private bool isStarted = false;
+    [SerializeField] private GlobalEventInt keyCodesMoveEvent;//Событие нажатия кнопки управления
+    [SerializeField] private GlobalEvent keyGunFireEvent;//Событие нажатия кнопки огня
+    [SerializeField] private GlobalEvent startGameEvent;//Событие старта игры
+    [SerializeField] private GlobalEvent endGameEvent;//Событие окончания игры
 
+    private Filter _filterPlayers; //Фильтер сущностей игроков
+    private ControlsComponent _control; //Компонент управления
+    private bool _isStartedGame = false; //Метка начала игры
+
+    /// <summary>
+    /// Устанавливает фильтер игроков
+    /// Задает компонент управления
+    /// </summary>
     public override void OnAwake() {
-        _filter = World.Filter.With<PlayerComponent>().With<GunComponent>().With<MovementComponent>().With<TransformComponent>();
+        _filterPlayers = World.Filter.With<PlayerComponent>().With<GunComponent>().With<MovementComponent>().With<TransformComponent>();
+
         ref var controls = ref World.Filter.With<ControlsComponent>().Select<ControlsComponent>();
         _control = controls.GetComponent(0);
     }
 
+    /// <summary>
+    /// Проверяет начало и окончание игры
+    /// Запускает стрельбу и передвижение игроков
+    /// </summary>
+    /// <param name="deltaTime"></param>
     public override void OnUpdate(float deltaTime) 
     {
-        if (startEvent.IsPublished)
+        if (startGameEvent.IsPublished)
         {
-            isStarted = true;
+             _isStartedGame = true;
         }
-        if(isStarted)
+
+        if (endGameEvent.IsPublished)
+        {
+            _isStartedGame = false;
+        }
+
+        if (_isStartedGame)
         { 
                 OnFireInput();
                 OnMoveInput();
         }
     }
 
+    /// <summary>
+    /// Запускает стрельбу игрока
+    /// </summary>
     private void OnFireInput()
     {
-        if(gunFireEvent.IsPublished)
+        if(keyGunFireEvent.IsPublished) //Проверка события
         {
-            var players = this._filter.Select<GunComponent>();
+            var players = this._filterPlayers.Select<PlayerComponent>();
+            var guns = this._filterPlayers.Select<GunComponent>();
 
-            for (int i = 0, length = this._filter.Length; i < length; i++)
+            //Перебор сущностей
+            for (int i = 0, length = this._filterPlayers.Length; i < length; i++)
             {
                 ref var player = ref players.GetComponent(i);
-                if(!player.IsReloadGun) player.IsShoot = true;
-            }
 
-            gunFireEvent.Dispose();
+                //ПРоверка сетевого игрока
+                if (player.NumberPlayer == WebManager.Instance.NumberPlayer)
+                {
+                    //Установка метки стрельбы на оружие
+                    ref var gun = ref guns.GetComponent(i);
+                    //Провекра на перезарядку орудия
+                    if (!gun.IsReloadGun) gun.IsShoot = true;
+                }
+            }
         }
     }
 
+    /// <summary>
+    /// Запускает передвижение игрока
+    /// </summary>
     private void OnMoveInput()
     {
-        if (keyCodeEvent.IsPublished)
+        //ПРоверка события нажатия кнопки передвижения
+        if (keyCodesMoveEvent.IsPublished)
         {
-            var players = this._filter.Select<MovementComponent>();
-            var transforms = this._filter.Select<TransformComponent>();
+            var movers = this._filterPlayers.Select<MovementComponent>();
+            var transforms = this._filterPlayers.Select<TransformComponent>();
+            var players = this._filterPlayers.Select<PlayerComponent>();
 
-            for (int i = 0, length = this._filter.Length; i < length; i++)
+            //Перебор сущностей
+            for (int i = 0, length = this._filterPlayers.Length; i < length; i++)
             {
                 ref var player = ref players.GetComponent(i);
-                player.VectorMove = CreateMoveVector((KeyCode)keyCodeEvent.BatchedChanges.Peek());
-                
-                if(player.VectorMove != Vector3.zero)
-                    transforms.GetComponent(i).transform.up = player.VectorMove;
-            }
 
-            keyCodeEvent.Dispose();
+                //ПРоверка сетевого игрока
+                if (player.NumberPlayer == WebManager.Instance.NumberPlayer)
+                {
+                    ref var mover = ref movers.GetComponent(i);
+
+                    //Установка вектора передвижения игрока
+                    mover.VectorMove = CreateMoveVector((KeyCode)keyCodesMoveEvent.BatchedChanges.Peek());
+
+                    //Установка направления объекта игрока в сторону передвижения
+                    if (mover.VectorMove != Vector3.zero)
+                        transforms.GetComponent(i).transform.up = mover.VectorMove;
+                }
+            }
         }
     }
 
+    /// <summary>
+    /// Вычисляет вектор направления игрока в зависимости от нажатой кнопки
+    /// </summary>
+    /// <param name="keyCode">Код нажатой клавиши</param>
+    /// <returns></returns>
     private Vector3 CreateMoveVector(KeyCode keyCode)
     {
         Vector3 vectorMove = Vector3.zero;

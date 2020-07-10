@@ -2,6 +2,7 @@
 using UnityEngine;
 using Unity.IL2CPP.CompilerServices;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 [Il2CppSetOption(Option.NullChecks, false)]
 [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
@@ -16,7 +17,14 @@ public struct AnimTimerComponent : IComponent {
     [SerializeField] private int _fontMaxSize;
     [SerializeField] private int _fontMinSize;
 
+    [SerializeField] private UnityEvent _endTimerEvent;
+
     private float _timeStartTimer;
+
+    public UnityEvent EndTimerEvent
+    {
+        get => _endTimerEvent;
+    }
 
     public Text TimerText
     {

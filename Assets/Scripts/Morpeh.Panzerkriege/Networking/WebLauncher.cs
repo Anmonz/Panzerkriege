@@ -25,11 +25,7 @@ public class WebLauncher : MonoBehaviourPunCallbacks
 
     private void Connect()
     {
-        if (PhotonNetwork.IsConnected)
-        {
-            PhotonNetwork.JoinRandomRoom();
-        }
-        else
+        if (!PhotonNetwork.IsConnected)
         {
             isConnecting = PhotonNetwork.ConnectUsingSettings();
             PhotonNetwork.GameVersion = gameVersion;
@@ -40,7 +36,6 @@ public class WebLauncher : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.JoinRandomRoom();
     }
-
 
     public override void OnDisconnected(DisconnectCause cause)
     {
