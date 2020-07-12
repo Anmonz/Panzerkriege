@@ -7,5 +7,5 @@ using Unity.IL2CPP.CompilerServices;
 [Il2CppSetOption(Option.DivideByZeroChecks, false)]
 [System.Serializable]
 public struct LifeTimeComponent : IComponent {
-    public float lifeTime;
+    public float lifeTime;  //время жизни объекта с этим компонентом и HealthComponent
 }

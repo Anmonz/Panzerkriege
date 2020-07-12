@@ -15,7 +15,7 @@ public sealed class HealthSystem : UpdateSystem {
 
 
     private Filter _filterHealth;//Фильтр HealthComponent DestroyComponent
-    private Filter _filterImmortalHealth; // фильтр безсмертных
+    private Filter _filterImmortalHealth; // фильтр бессмертных
 
     /// <summary>
     /// Устанавливает фильтр
@@ -67,7 +67,7 @@ public sealed class HealthSystem : UpdateSystem {
     }
 
     /// <summary>
-    /// Очищает полученный урон для безсмертных
+    /// Очищает полученный урон для бессмертных
     /// </summary>
     private void CheckImmortalHealth()
     {

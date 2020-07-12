@@ -7,9 +7,9 @@ using Unity.IL2CPP.CompilerServices;
 [Il2CppSetOption(Option.DivideByZeroChecks, false)]
 [System.Serializable]
 public struct ControlsComponent : IComponent {
-    public KeyCode keyMoveUp;
-    public KeyCode keyMoveDown;
-    public KeyCode keyMoveLeft;
-    public KeyCode keyMoveRight;
-    public KeyCode keyMoveFire;
+    public KeyCode keyMoveUp;   //Код кнопки движения вверх
+    public KeyCode keyMoveDown; //Код кнопки движения вниз
+    public KeyCode keyMoveLeft; //Код кнопки движения влево
+    public KeyCode keyMoveRight;//Код кнопки движения вправо
+    public KeyCode keyMoveFire; //Код кнопки стрельбы
 }

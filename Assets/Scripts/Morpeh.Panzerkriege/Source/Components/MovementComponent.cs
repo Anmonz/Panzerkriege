@@ -9,13 +9,16 @@ using UnityEngine.Events;
 [System.Serializable]
 public struct MovementComponent : IComponent
 {
-    public float speed;
-    public UnityEvent moveStartEvent;
-    public UnityEvent moveEndEvent;
-    public UnityEvent moveHitEvent;
+    public float speed; //Скорость передвижения
+    public UnityEvent moveStartEvent; //Событие начала движения
+    public UnityEvent moveEndEvent; //Событие окончания движения
+    public UnityEvent moveHitEvent; //Событие столкновения с препядствием
 
-    private Vector3 _vectorMove;
+    private Vector3 _vectorMove;    //Вектор направления движения
 
+    /// <summary>
+    /// Вектор направления движения
+    /// </summary>
     public Vector3 VectorMove
     {
         get => _vectorMove;

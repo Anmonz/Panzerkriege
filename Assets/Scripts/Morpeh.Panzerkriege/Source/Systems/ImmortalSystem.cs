@@ -4,7 +4,7 @@ using Unity.IL2CPP.CompilerServices;
 
 
 /// <summary>
-/// Система отключает безсмертие (Убирает компонент метки безсмертия) по заданному времени
+/// Система отключает бессмертие (Убирает компонент метки бессмертия) по заданному времени
 /// </summary>
 [Il2CppSetOption(Option.NullChecks, false)]
 [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
@@ -12,9 +12,9 @@ using Unity.IL2CPP.CompilerServices;
 [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(ImmortalSystem))]
 public sealed class ImmortalSystem : UpdateSystem {
 
-    [SerializeField] private float timeImmortal;//Время безсмертия
+    [SerializeField] private float timeImmortal;//Время бессмертия
 
-    private Filter _immortalFillter;//Фильтр безсмертия
+    private Filter _immortalFillter;//Фильтр бессмертия
 
     /// <summary>
     /// Устанавливает фильтр
@@ -24,7 +24,7 @@ public sealed class ImmortalSystem : UpdateSystem {
     }
 
     /// <summary>
-    /// Проверяет окончание времени существования метки безсмертия и убирает ее
+    /// Проверяет окончание времени существования метки бессмертия и убирает ее
     /// </summary>
     /// <param name="deltaTime"></param>
     public override void OnUpdate(float deltaTime)
@@ -35,10 +35,10 @@ public sealed class ImmortalSystem : UpdateSystem {
         {
             ref var immortal = ref immortals.GetComponent(i);
 
-            //Проверяет окончание времени безсмертия
+            //Проверяет окончание времени бессмертия
             if(immortal.TimeStartImmortal + timeImmortal < Time.time)
             {
-                //Убирает метку безсмертия с сущности хранящей метку безсмертия 
+                //Убирает метку бессмертия с сущности хранящей метку бессмертия 
                 _immortalFillter.GetEntity(i).RemoveComponent<ImmortalMarkComponent>();
             }
         }

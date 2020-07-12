@@ -8,12 +8,15 @@ using UnityEngine.Events;
 [Il2CppSetOption(Option.DivideByZeroChecks, false)]
 [System.Serializable]
 public struct BulletComponent : IComponent {
-    public float bulletSpeed;
-    public int damgeBullet;
-    public UnityEvent bulletExplosionEvent;
+    public float bulletSpeed;               //Скорость пули
+    public int damgeBullet;                 //Урон пули
+    public UnityEvent bulletExplosionEvent; //Событие уничтожения пули при попадании в объект
 
-    private Vector3 _direction;
+    private Vector3 _direction; //Направление пули
 
+    /// <summary>
+    /// Направление пули
+    /// </summary>
     public Vector3 Direction
     {
         get => _direction;

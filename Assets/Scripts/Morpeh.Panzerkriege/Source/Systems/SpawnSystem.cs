@@ -82,9 +82,9 @@ public sealed class SpawnSystem : UpdateSystem
                             //Провека столкновения на пустой результат
                             if (hit.collider == null)
                             {
-                                //Создание игрока и добавление к нему метки безсмертия
+                                //Создание игрока и добавление к нему метки бессмертия
                                 ImmortalMarkProvider immortal = WebManager.Instance.Instantiate(_players[j], transform.transform).AddComponent<ImmortalMarkProvider>();
-                                //Установка времения начала безсмертия
+                                //Установка времения начала бессмертия
                                 immortal.GetData().TimeStartImmortal = Time.time;
                                 //Обнуления времени начала возрождения
                                 _startTimeRespawn[j] = -1f;

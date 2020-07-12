@@ -7,5 +7,5 @@ using Unity.IL2CPP.CompilerServices;
 [Il2CppSetOption(Option.DivideByZeroChecks, false)]
 [System.Serializable]
 public struct EmblemComponent : IComponent {
-    public string commandName;
+    public string commandName;  //Имя команды которой принадлежит емблема
 }

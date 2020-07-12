@@ -7,9 +7,11 @@ using Unity.IL2CPP.CompilerServices;
 [Il2CppSetOption(Option.DivideByZeroChecks, false)]
 [System.Serializable]
 public struct SpawnComponent : IComponent {
-    [SerializeField] private int _numberPlayer;
+    [SerializeField] private int _numberPlayer; //Номер игрока
 
-
+    /// <summary>
+    /// Номер игрока
+    /// </summary>
     public int NumberPlayer
     {
         get => _numberPlayer;

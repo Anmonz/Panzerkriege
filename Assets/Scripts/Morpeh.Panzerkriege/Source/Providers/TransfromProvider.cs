@@ -8,12 +8,19 @@ using UnityEngine;
 [Il2CppSetOption(Option.DivideByZeroChecks, false)]
 public sealed class TransfromProvider : MonoProvider<TransformComponent>, IPunObservable
 {
-
+    /// <summary>
+    /// Добавляет текущий transform если он небыл задан в TransformComponent.transform
+    /// </summary>
     private void Start()
     {
         if(this.GetData().transform == null) this.GetData().transform = this.transform;
     }
 
+    /// <summary>
+    /// Передает через PUN2 позицию и поворот
+    /// </summary>
+    /// <param name="stream"></param>
+    /// <param name="info"></param>
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)

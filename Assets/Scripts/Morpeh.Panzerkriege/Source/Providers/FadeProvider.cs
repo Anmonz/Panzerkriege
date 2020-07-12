@@ -6,6 +6,9 @@ using Unity.IL2CPP.CompilerServices;
 [Il2CppSetOption(Option.DivideByZeroChecks, false)]
 public sealed class FadeProvider : MonoProvider<FadeComponent> {
 
+    /// <summary>
+    /// Метод запускает выцветание
+    /// </summary>
     public void StartFade()
     {
         this.GetData().IsStartFade = true;

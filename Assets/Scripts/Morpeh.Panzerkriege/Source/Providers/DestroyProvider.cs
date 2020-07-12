@@ -7,11 +7,19 @@ using Photon.Pun;
 [Il2CppSetOption(Option.DivideByZeroChecks, false)]
 public sealed class DestroyProvider : MonoProvider<DestroyComponent>, IPunObservable
 {
-
+    /// <summary>
+    /// Добавляет текущий gameObject если он небыл задан в DestroyComponent.destroyObject
+    /// </summary>
     public void Start()
     {
         if(this.GetData().destroyObject == null) this.GetData().destroyObject = gameObject;
     }
+    
+    /// <summary>
+    /// Передает через PUN2 метку уничтожения объекта
+    /// </summary>
+    /// <param name="stream"></param>
+    /// <param name="info"></param>
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)

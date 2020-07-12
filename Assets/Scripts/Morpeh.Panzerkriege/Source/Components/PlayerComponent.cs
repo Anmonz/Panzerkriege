@@ -8,8 +8,11 @@ using System;
 [Il2CppSetOption(Option.DivideByZeroChecks, false)]
 [System.Serializable]
 public struct PlayerComponent : IComponent {
-    [SerializeField] private int _numberPlayer;
+    [SerializeField] private int _numberPlayer;//Номер игрока 
     
+    /// <summary>
+    /// Номер игрока
+    /// </summary>
     public int NumberPlayer
     {
         get => _numberPlayer;

@@ -9,11 +9,14 @@ using UnityEngine.Events;
 [System.Serializable]
 public struct DestroyComponent : IComponent
 {
-    public GameObject destroyObject;
-    public UnityEvent destroyEvent;
+    public GameObject destroyObject;    //Уничтожающийся объект
+    public UnityEvent destroyEvent;     //Событие уничтожения объекта
 
-    private bool _isDestroy;
+    private bool _isDestroy;            //Метка для уничтожения объекта
 
+    /// <summary>
+    /// Метка уничтожающая объект
+    /// </summary>
     public bool IsDestroy
     {
         get => _isDestroy;

@@ -7,5 +7,5 @@ using Unity.IL2CPP.CompilerServices;
 [Il2CppSetOption(Option.DivideByZeroChecks, false)]
 [System.Serializable]
 public struct TransformComponent : IComponent {
-    public Transform transform;
+    public Transform transform; //Трансформ
 }

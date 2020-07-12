@@ -8,10 +8,13 @@ using System.Collections.Generic;
 [Il2CppSetOption(Option.DivideByZeroChecks, false)]
 [System.Serializable]
 public struct HealthComponent : IComponent {
-    public int healthPoints;
+    public int healthPoints;    //Количество пунктов жизни
 
-    private Stack<int> _damages;
-    
+    private Stack<int> _damages;//Стек набора полученных повреждений
+
+    /// <summary>
+    /// Стек набора полученных повреждений
+    /// </summary>
     public Stack<int> Damages
     {
         get
